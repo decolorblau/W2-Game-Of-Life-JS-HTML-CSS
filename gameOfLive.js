@@ -19,15 +19,19 @@ board = [
   [0, 0, 1, 0, 0],
   [0, 0, 0, 0, 0],
 ];
-
+let newBoard = [];
 let liveNeighbors = 0;
+let cellState = 0;
+let i = 0;
+let j = 0;
+console.log(boardPosition(board));
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
-  let newBoard = [];
-  for (let i = 0; i < currentBoard.length; i++) {
+  // let newBoard = [];
+  for (i = 0; i < currentBoard.length; i++) {
     newBoard.push([]);
-    for (let j = 0; j < currentBoard[i].length; j++) {
+    for (j = 0; j < currentBoard[i].length; j++) {
       if (i === 0 && j === 0) {
         liveNeighborsLeftTopCorner(currentBoard, i, j);
 
@@ -69,83 +73,91 @@ function boardPosition(currentBoard) {
         liveNeighborsCenter(currentBoard, i, j);
         // newBoard[i].push(9);
       }
+      cellsState(liveNeighbors, cellState);
+      newBoard[i].push(newCellState);
     }
   }
   return newBoard;
 }
-console.log(boardPosition(board));
 
 //3-Aplicar la funcion segun su posicionamiento i encontrar todos los vecinos vivos
 
 //3.1 -Esquina 0-0
-const liveNeighborsLeftTopCorner = (currentCell, i, j) => {
-  const neighbors = [];
+
+//console.log(liveNeighborsLeftTopCorner(board, 0, 0));
+function liveNeighborsLeftTopCorner(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i][j + 1],
     currentCell[i + 1][j],
     currentCell[i + 1][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  console.log(liveNeighbors, cellState);
+  return liveNeighbors, cellState;
+}
 
 //3.2 - ESquina 0-y.length
-
-const liveNeighborsRightTopCorner = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsRightTopCorner(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i + 1][j - 1],
     currentCell[i + 1][j],
     currentCell[i][j - 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.3 - ESquina x.length-0
-const liveNeighborsLeftBottomCorner = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsLeftBottomCorner(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j],
     currentCell[i - 1][j + 1],
     currentCell[i][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.4 - Esquina x.length-y.length
-const liveNeighborsRightBottomCorner = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsRightBottomCorner(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j],
     currentCell[i - 1][j - 1],
     currentCell[i][j - 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.5 - lado superior
-const liveNeighborsTop = (currentCell, i, j) => {
-  const neighbors = [];
+
+function liveNeighborsTop(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i][j - 1],
     currentCell[i][j + 1],
@@ -154,16 +166,17 @@ const liveNeighborsTop = (currentCell, i, j) => {
     currentCell[i + 1][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.6 - lado inferior
-const liveNeighborsBottom = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsBottom(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j - 1],
     currentCell[i - 1][j],
@@ -172,16 +185,17 @@ const liveNeighborsBottom = (currentCell, i, j) => {
     currentCell[i][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.7 - lado derecho
-const liveNeighborsRight = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsRight(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j - 1],
     currentCell[i - 1][j],
@@ -190,16 +204,17 @@ const liveNeighborsRight = (currentCell, i, j) => {
     currentCell[i + 1][j]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 //3.8 - lado izquierdo
-const liveNeighborsLeft = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsLeft(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j],
     currentCell[i - 1][j + 1],
@@ -208,17 +223,18 @@ const liveNeighborsLeft = (currentCell, i, j) => {
     currentCell[i + 1][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 
 //3.9 - centro
-const liveNeighborsCenter = (currentCell, i, j) => {
-  const neighbors = [];
+function liveNeighborsCenter(currentCell, i, j) {
+  let neighbors = [];
   neighbors.push(
     currentCell[i - 1][j - 1],
     currentCell[i - 1][j],
@@ -230,12 +246,13 @@ const liveNeighborsCenter = (currentCell, i, j) => {
     currentCell[i + 1][j + 1]
   );
 
+  cellState = currentCell[i][j];
   liveNeighbors = 0;
   liveNeighbors = neighbors.reduce(
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  return liveNeighbors;
-};
+  return liveNeighbors, cellState;
+}
 
 //4-Analizar segun los vecinos vivos que tienen que les passa.
