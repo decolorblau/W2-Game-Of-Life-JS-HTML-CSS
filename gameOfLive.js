@@ -11,6 +11,7 @@ function createBoard(cells) {
   }
   return board;
 }
+console.log(createBoard(5));
 
 board = [
   [0, 0, 0, 0, 0, 0, 0],
@@ -290,4 +291,5 @@ module.exports = {
   liveNeighborsRightBottomCorner,
   liveNeighborsRightTopCorner,
   liveNeighborsTop,
+  createBoard,
 };

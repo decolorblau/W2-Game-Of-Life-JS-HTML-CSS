@@ -10,6 +10,7 @@ const {
   liveNeighborsRightBottomCorner,
   liveNeighborsLeftTopCorner,
   liveNeighborsRight,
+  createBoard,
 } = require("./gameOfLive");
 
 describe("Given boardPosition function", () => {
@@ -100,6 +101,24 @@ describe("Given cellsState function", () => {
 
       const result = cellsState(neighbors, state);
       expect(result).toBe(expected);
+    });
+  });
+});
+
+describe.skip("Given createBoard function", () => {
+  describe("When it receives 5", () => {
+    test("Then it should return 5 columns and 5 rows of 0", () => {
+      const cells = 5;
+      const expected = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      const result = createBoard(cells);
+      expect(result).toEqual(expected);
     });
   });
 });
