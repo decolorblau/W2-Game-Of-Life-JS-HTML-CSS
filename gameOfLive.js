@@ -272,7 +272,21 @@ function cellsState(neighbors, state) {
 }
 
 // timer
-setInterval(() => {
-  console.log(boardPosition(board));
-  //return newBoardLoop
-}, 1000);
+//setInterval(() => {
+//  console.log(boardPosition(board));
+//  //return newBoardLoop
+//}, 1000);
+
+module.exports = {
+  cellsState,
+  boardPosition,
+  liveNeighborsBottom,
+  liveNeighborsCenter,
+  liveNeighborsLeft,
+  liveNeighborsLeftBottomCorner,
+  liveNeighborsLeftTopCorner,
+  liveNeighborsRight,
+  liveNeighborsRightBottomCorner,
+  liveNeighborsRightTopCorner,
+  liveNeighborsTop,
+};
