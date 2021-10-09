@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "super-mario";
+  src: url("/assets/supermario256-webfont.woff2") format("woff2"),
+    url("/assets/supermario256-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-image: url(/assets/fondo\ mario.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: auto;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.title {
+  top: 0;
+  width: 100vw;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: "super-mario";
+  font-size: 60px;
+  color: red;
+  text-shadow: 1px 1px 2px black;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-board {
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row {
+  width: 100%;
+  flex-grow: 1;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col {
+  width: 100%;
+  border: none;
+  background-image: url(/assets/Question_Block_NSMB.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 1px;
+  padding: 0;
+}

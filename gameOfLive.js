@@ -1,5 +1,23 @@
 //GAME OF LIVE
 
+//listeners
+const gameBoard = document.querySelector(".game-board");
+
+const generateBoard = () => {
+  for (let i = 0; i < 12; i++) {
+    const row = document.createElement("div");
+    gameBoard.appendChild(row);
+    row.classList.add("row", `row-${i}`);
+
+    for (let j = 0; j < 12; j++) {
+      const col = document.createElement("div");
+      row.appendChild(col);
+      col.classList.add("col", `${i}-${j}`);
+    }
+  }
+};
+generateBoard();
+
 //1r crear tablero.
 let board = [];
 function createBoard(cells) {
@@ -11,7 +29,6 @@ function createBoard(cells) {
   }
   return board;
 }
-console.log(createBoard(5));
 
 board = [
   [0, 0, 0, 0, 0, 0, 0],
