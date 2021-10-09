@@ -256,3 +256,19 @@ function liveNeighborsCenter(currentCell, i, j) {
 }
 
 //4-Analizar segun los vecinos vivos que tienen que les passa.
+function cellsState(neighbors, state) {
+  if (state === 1) {
+    if (neighbors >= 2 && neighbors < 4) {
+      newCellState = 1;
+    } else if (neighbors < 2 || neighbors > 4) {
+      newCellState = 0;
+    }
+  } else {
+    if (neighbors === 3) {
+      newCellState = 1;
+    } else {
+      newCellState = 0;
+    }
+  }
+  return newCellState;
+}
