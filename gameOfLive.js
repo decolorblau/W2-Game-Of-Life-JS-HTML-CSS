@@ -13,11 +13,12 @@ function createBoard(cells) {
 }
 
 board = [
-  [0, 0, 0, 0, 1],
-  [0, 1, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 1, 0],
-  [1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 1, 0, 1],
+  [0, 0, 0, 0, 1, 0],
 ];
 let newBoard = [];
 let liveNeighbors = 0;
@@ -257,7 +258,7 @@ function cellsState(neighbors, state) {
   if (state === 1) {
     if (neighbors >= 2 && neighbors < 4) {
       newCellState = 1;
-    } else if (neighbors < 2 || neighbors > 4) {
+    } else if (neighbors < 2 || neighbors >= 4) {
       newCellState = 0;
     }
   } else {
