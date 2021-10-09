@@ -11,14 +11,16 @@ function createBoard(cells) {
   }
   return board;
 }
+console.log(createBoard(5));
 
 board = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 1, 0],
-  [0, 0, 0, 1, 0, 1],
-  [0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 1, 1],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
 ];
 let newBoard = [];
 let liveNeighbors = 0;
@@ -271,8 +273,23 @@ function cellsState(neighbors, state) {
   return newCellState;
 }
 
-// timer
-setInterval(() => {
+//timer;
+/* setInterval(() => {
   console.log(boardPosition(board));
   //return newBoardLoop
-}, 1000);
+}, 1000); */
+
+module.exports = {
+  cellsState,
+  boardPosition,
+  liveNeighborsBottom,
+  liveNeighborsCenter,
+  liveNeighborsLeft,
+  liveNeighborsLeftBottomCorner,
+  liveNeighborsLeftTopCorner,
+  liveNeighborsRight,
+  liveNeighborsRightBottomCorner,
+  liveNeighborsRightTopCorner,
+  liveNeighborsTop,
+  createBoard,
+};
