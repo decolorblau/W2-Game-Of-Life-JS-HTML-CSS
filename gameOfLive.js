@@ -13,25 +13,22 @@ function createBoard(cells) {
 }
 
 board = [
-  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1],
+  [0, 1, 1, 0, 0],
   [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 0],
+  [1, 0, 0, 0, 0],
 ];
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
-let i = 0;
-let j = 0;
-console.log(boardPosition(board));
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
-  // let newBoard = [];
-  for (i = 0; i < currentBoard.length; i++) {
+  newBoard = [];
+  for (let i = 0; i < currentBoard.length; i++) {
     newBoard.push([]);
-    for (j = 0; j < currentBoard[i].length; j++) {
+    for (let j = 0; j < currentBoard[i].length; j++) {
       if (i === 0 && j === 0) {
         liveNeighborsLeftTopCorner(currentBoard, i, j);
 
@@ -77,7 +74,8 @@ function boardPosition(currentBoard) {
       newBoard[i].push(newCellState);
     }
   }
-  return newBoard;
+  board = newBoard;
+  return board;
 }
 
 //3-Aplicar la funcion segun su posicionamiento i encontrar todos los vecinos vivos
@@ -99,7 +97,6 @@ function liveNeighborsLeftTopCorner(currentCell, i, j) {
     (accumulator, neighbor) => accumulator + neighbor,
     0
   );
-  console.log(liveNeighbors, cellState);
   return liveNeighbors, cellState;
 }
 
@@ -272,3 +269,9 @@ function cellsState(neighbors, state) {
   }
   return newCellState;
 }
+
+// timer
+setInterval(() => {
+  console.log(boardPosition(board));
+  //return newBoardLoop
+}, 1000);
