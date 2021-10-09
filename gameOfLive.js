@@ -1,6 +1,18 @@
 //GAME OF LIVE
 
 //1r crear tablero.
+const board = [];
+function createBoard(cells) {
+  for (let i = 0; i < cells; i++) {
+    board.push([]);
+    for (let j = 0; j < cells; j++) {
+      board[i].push(0);
+    }
+  }
+  return board;
+}
+
+console.log(createBoard(5));
 
 //2-Analizar en que posicion esta cada elemento
 
@@ -18,12 +30,3 @@
 //3.9 - centro
 
 //4-Analizar segun los vecinos vivos que tienen que les passa.
-
-const board = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-//console.table(board);
