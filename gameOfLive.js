@@ -13,12 +13,13 @@ function createBoard(cells) {
 }
 
 board = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 1, 0],
-  [0, 0, 0, 1, 0, 1],
-  [0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 1, 1],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
 ];
 let newBoard = [];
 let liveNeighbors = 0;
@@ -271,11 +272,11 @@ function cellsState(neighbors, state) {
   return newCellState;
 }
 
-// timer
-//setInterval(() => {
-//  console.log(boardPosition(board));
-//  //return newBoardLoop
-//}, 1000);
+//timer;
+/* setInterval(() => {
+  console.log(boardPosition(board));
+  //return newBoardLoop
+}, 1000); */
 
 module.exports = {
   cellsState,
