@@ -1,3 +1,24 @@
+//GAME OF LIVE
+
+//1r crear tablero.
+
+//2-Analizar en que posicion esta cada elemento
+
+//3-Aplicar la funcion segun su posicionamiento i encontrar todos los vecinos vivos
+
+//3.1 -Esquina 0-0
+//3.2 - ESquina 0-y.length
+//3.3 - ESquina x.length-0
+//3.3 - ESquina x.length-0
+//3.4 - Esquina x.length-y.length
+//3.5 - lado superior
+//3.6 - lado inferior
+//3.7 - lado derecho
+//3.8 - lado izquierdo
+//3.9 - centro
+
+//4-Analizar segun los vecinos vivos que tienen que les passa.
+
 const board = [
   [0, 0, 0, 0, 0],
   [0, 0, 1, 0, 0],
@@ -6,38 +27,3 @@ const board = [
   [0, 0, 0, 0, 0],
 ];
 //console.table(board);
-
-const liveNeighbors = (currentCell, i, j) => {
-  const neighbors = [];
-  neighbors.push(
-    currentCell[i - 1][j - 1],
-    currentCell[i - 1][j],
-    currentCell[i - 1][j + 1],
-    currentCell[i][j - 1],
-    currentCell[i][j + 1],
-    currentCell[i + 1][j - 1],
-    currentCell[i + 1][j],
-    currentCell[i + 1]
-  );
-
-  return neighbors.reduce((accumulator, neighbor) => accumulator + neighbor, 0);
-};
-
-console.table(newBoard(board));
-
-/* const newBoard = (currentBoard) => {
-  const nextBoard = [];
-  for (let i = 0; i < currentBoard.length; i++) {
-    nextBoard.push([]);
-    for (let j = 0; j < currentBoard[i].length; j++) {
-      
-
-      if (board[i][j] === 1) {
-        nextBoard[i].push("2");
-      } else {
-        nextBoard[i].push(0);
-      }
-    }
-  }
-  return nextBoard;
-}; */
