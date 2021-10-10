@@ -2,38 +2,55 @@
 
 //listeners
 const gameBoard = document.querySelector(".game-board");
-const cellChange = document.querySelectorAll(".col");
+const start = document.querySelector(".button");
 
-let board = [];
-let cells = 12;
-
-
-cellChange.onclick = revive;
+let cellChange;
 
 function revive() {
   cellChange.classList.add("live");
 }
+let board = [];
+cells = 12;
 
-const createBoard = (cells) => {
-  for (let i = 0; i < cells; i++) {
+const createBoard = (spaces) => {
+  for (let i = 0; i < spaces; i++) {
     board.push([]);
     const row = document.createElement("div");
     gameBoard.appendChild(row);
     row.classList.add("row", `${i}`);
 
-    for (let j = 0; j < cells; j++) {
+    for (let j = 0; j < spaces; j++) {
       board[i].push(0);
       const col = document.createElement("div");
       row.appendChild(col);
-      col.classList.add("col", `${i}-${j}`);
+      col.classList.add("col", "die");
+      col.id = `${i}-${j}`;
+      col.onclick = changeColor;
     }
   }
-  return board
+  return board;
 };
-createBoard();
+createBoard(cells);
+
+function changeColor() {
+  console.log(this.id);
+  const position = this.id.split("-");
+  console.log(position);
+  const positionI = position[0];
+  const postitionJ = position[1];
+  if (this.classList.contains("die")) {
+    this.classList.remove("die");
+    this.classList.add("live");
+    board[positionI][postitionJ] = 1;
+  } else {
+    this.classList.remove("live");
+    this.classList.add("die");
+    board[positionI][postitionJ] = 0;
+  }
+}
 
 //1r crear tablero medidas con todo 0.
-
+//let board = [];
 //function createBoard(cells) {
 //  for (let i = 0; i < cells; i++) {
 //    board.push([]);
@@ -44,22 +61,33 @@ createBoard();
 //  return board;
 //}
 
-//Crear tablero con los 1 y los 0 introduciodos por el usuario
+//Crear tablero con los 1 y los 0 introduciodos por el
 
-board = [
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 1, 1],
-  [0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-];
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
 
-function changeBoard ()
+//const changeBoard = (currentBoard) => {
+//  for (let i = 0; i < currentBoard.length; i++) {
+//    for (let j = 0; j < currentBoard[i].length; j++) {
+//      cellChange = document.getElementById(`${i}-${j}`);
+//      if (currentBoard[i][j] === 1) {
+//        cellChange.classList.add("live");
+//      }
+//    }
+//  }
+//};
+//changeBoard(board);
+
+// Boton start
+start.addEventListener("click", () => startGame());
+
+function startGame() {
+  const timer = setInterval(() => {
+    boardPosition(board);
+    console.log(board);
+  }, 1500);
+}
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
@@ -108,7 +136,7 @@ function boardPosition(currentBoard) {
         liveNeighborsCenter(currentBoard, i, j);
         // newBoard[i].push(9);
       }
-      cellsState(liveNeighbors, cellState);
+      cellsState(liveNeighbors, cellState, i, j);
       newBoard[i].push(newCellState);
     }
   }
@@ -291,16 +319,18 @@ function liveNeighborsCenter(currentCell, i, j) {
 }
 
 //4-Analizar segun los vecinos vivos que tienen que les passa.
-function cellsState(neighbors, state) {
+function cellsState(neighbors, state, i, j) {
   if (state === 1) {
     if (neighbors >= 2 && neighbors < 4) {
       newCellState = 1;
     } else if (neighbors < 2 || neighbors >= 4) {
       newCellState = 0;
+      document.getElementById(`${i}-${j}`).className = "col die";
     }
   } else {
     if (neighbors === 3) {
       newCellState = 1;
+      document.getElementById(`${i}-${j}`).className = "col live";
     } else {
       newCellState = 0;
     }
@@ -308,23 +338,17 @@ function cellsState(neighbors, state) {
   return newCellState;
 }
 
-//timer;
-/* setInterval(() => {
-  console.log(boardPosition(board));
-  //return newBoardLoop
-}, 1000); */
-
-module.exports = {
-  cellsState,
-  boardPosition,
-  liveNeighborsBottom,
-  liveNeighborsCenter,
-  liveNeighborsLeft,
-  liveNeighborsLeftBottomCorner,
-  liveNeighborsLeftTopCorner,
-  liveNeighborsRight,
-  liveNeighborsRightBottomCorner,
-  liveNeighborsRightTopCorner,
-  liveNeighborsTop,
-  createBoard,
-};
+//module.exports = {
+//  cellsState,
+//  boardPosition,
+//  liveNeighborsBottom,
+//  liveNeighborsCenter,
+//  liveNeighborsLeft,
+//  liveNeighborsLeftBottomCorner,
+//  liveNeighborsLeftTopCorner,
+//  liveNeighborsRight,
+//  liveNeighborsRightBottomCorner,
+//  liveNeighborsRightTopCorner,
+//  liveNeighborsTop,
+//  createBoard,
+//};

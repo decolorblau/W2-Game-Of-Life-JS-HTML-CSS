@@ -13,8 +13,8 @@
 body {
   background-image: url(/assets/fondo\ mario.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: 50% 100%;
+  background-size: cover;
+  background-position: 100% 50% 100%;
   width: auto;
   height: 100vh;
   overflow: hidden;
@@ -32,8 +32,8 @@ body {
 h1 {
   font-family: "super-mario";
   font-size: 60px;
-  color: red;
-  text-shadow: 1px 1px 2px black;
+  color: #45a33d;
+  text-shadow: 2px 2px 5px red;
 }
 
 main {
@@ -62,9 +62,36 @@ main {
 .col {
   width: 100%;
   border: none;
+  margin: 1px;
+  padding: 0;
+}
+
+.die {
   background-image: url(/assets/Question_Block_NSMB.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  margin: 1px;
-  padding: 0;
+}
+
+.live {
+  background-image: url(/assets/bolet.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.button {
+  margin: 0.3rem;
+  padding: 0.5rem 1.6rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0.4rem 0.4rem 0.2rem 0.1rem rgba(31, 31, 31, 0.3);
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: transparent;
+  color: red;
 }
