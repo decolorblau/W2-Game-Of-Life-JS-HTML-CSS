@@ -11,7 +11,7 @@ function revive() {
   cellChange.classList.add("live");
 }
 let board = [];
-cells = 12;
+let cells = 8;
 
 const createBoard = (spaces) => {
   for (let i = 0; i < spaces; i++) {
@@ -50,36 +50,10 @@ function changeColor() {
   }
 }
 
-//1r crear tablero medidas con todo 0.
-//let board = [];
-//function createBoard(cells) {
-//  for (let i = 0; i < cells; i++) {
-//    board.push([]);
-//    for (let j = 0; j < cells; j++) {
-//      board[i].push(0);
-//    }
-//  }
-//  return board;
-//}
-
-//Crear tablero con los 1 y los 0 introduciodos por el
-
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
 let timer;
-
-//const changeBoard = (currentBoard) => {
-//  for (let i = 0; i < currentBoard.length; i++) {
-//    for (let j = 0; j < currentBoard[i].length; j++) {
-//      cellChange = document.getElementById(`${i}-${j}`);
-//      if (currentBoard[i][j] === 1) {
-//        cellChange.classList.add("live");
-//      }
-//    }
-//  }
-//};
-//changeBoard(board);
 
 // Boton start
 start.addEventListener("click", () => startGame());
@@ -88,8 +62,7 @@ end.addEventListener("click", () => clearInterval(timer));
 function startGame() {
   timer = setInterval(() => {
     boardPosition(board);
-    console.log(board);
-  }, 1500);
+  }, 1000);
 }
 
 //2-Analizar en que posicion esta cada elemento
@@ -326,6 +299,7 @@ function cellsState(neighbors, state, i, j) {
   if (state === 1) {
     if (neighbors >= 2 && neighbors < 4) {
       newCellState = 1;
+      document.getElementById(`${i}-${j}`).className = "col grand";
     } else if (neighbors < 2 || neighbors >= 4) {
       newCellState = 0;
       document.getElementById(`${i}-${j}`).className = "col die";
