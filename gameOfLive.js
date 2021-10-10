@@ -4,36 +4,34 @@
 const gameBoard = document.querySelector(".game-board");
 const cellChange = document.querySelectorAll(".col");
 
-let board = [];
-let cells = 12;
-
-
 cellChange.onclick = revive;
 
 function revive() {
   cellChange.classList.add("live");
 }
+let board = [];
+cells = 12;
 
-const createBoard = (cells) => {
-  for (let i = 0; i < cells; i++) {
+const createBoard = (spaces) => {
+  for (let i = 0; i < spaces; i++) {
     board.push([]);
     const row = document.createElement("div");
     gameBoard.appendChild(row);
     row.classList.add("row", `${i}`);
 
-    for (let j = 0; j < cells; j++) {
-      board[i].push(0);
+    for (let j = 0; j < spaces; j++) {
       const col = document.createElement("div");
       row.appendChild(col);
       col.classList.add("col", `${i}-${j}`);
+      board[i].push(0);
     }
   }
-  return board
+  return board;
 };
-createBoard();
+createBoard(cells);
 
 //1r crear tablero medidas con todo 0.
-
+//let board = [];
 //function createBoard(cells) {
 //  for (let i = 0; i < cells; i++) {
 //    board.push([]);
@@ -44,7 +42,7 @@ createBoard();
 //  return board;
 //}
 
-//Crear tablero con los 1 y los 0 introduciodos por el usuario
+//Crear tablero con los 1 y los 0 introduciodos por el
 
 board = [
   [0, 0, 0, 0, 0, 0, 0],
@@ -58,8 +56,6 @@ board = [
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
-
-function changeBoard ()
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
