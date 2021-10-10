@@ -2,7 +2,8 @@
 
 //listeners
 const gameBoard = document.querySelector(".game-board");
-const start = document.querySelector(".button");
+const start = document.querySelector(".start");
+const end = document.querySelector(".end");
 
 let cellChange;
 
@@ -66,6 +67,7 @@ function changeColor() {
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
+let timer;
 
 //const changeBoard = (currentBoard) => {
 //  for (let i = 0; i < currentBoard.length; i++) {
@@ -81,9 +83,10 @@ let cellState = 0;
 
 // Boton start
 start.addEventListener("click", () => startGame());
+end.addEventListener("click", () => clearInterval(timer));
 
 function startGame() {
-  const timer = setInterval(() => {
+  timer = setInterval(() => {
     boardPosition(board);
     console.log(board);
   }, 1500);
