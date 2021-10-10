@@ -27,13 +27,38 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 h1 {
   font-family: "super-mario";
   font-size: 60px;
-  color: #45a33d;
-  text-shadow: 2px 2px 5px red;
+
+  text-shadow: 5px 5px 5px red;
+  animation: colorh1 5s infinite;
+}
+
+@keyframes colorh1 {
+  0% {
+    color: #002fff;
+    text-shadow: 5px 5px 5px #44af35;
+  }
+  25% {
+    color: #f2ca09;
+    text-shadow: 5px 5px 5px #002fff;
+  }
+  50% {
+    color: #ef0a1a;
+    text-shadow: 5px 5px 5px #f2ca09;
+  }
+  75% {
+    color: #44af35;
+    text-shadow: 5px 5px 5px #ef0a1a;
+  }
+  100% {
+    color: #002fff;
+    text-shadow: 5px 5px 5px #44af35;
+  }
 }
 
 main {
@@ -44,8 +69,8 @@ main {
 }
 
 .game-board {
-  height: 500px;
-  width: 500px;
+  height: 490px;
+  width: 490px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,20 +103,35 @@ main {
   background-size: 100%;
 }
 
+.grand {
+  background-image: url(/assets/bolet\ lila.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+}
+
 .button {
   margin: 0.3rem;
-  padding: 0.5rem 1.6rem;
+  padding: 0.8rem 1.6rem;
   border: 0;
   border-radius: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.65);
   box-shadow: 0.4rem 0.4rem 0.2rem 0.1rem rgba(31, 31, 31, 0.3);
   color: white;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-family: "super-mario";
+  font-size: 18px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: transparent;
-  color: red;
+  background-color: rgba(1, 255, 35, 0.3);
+
+  color: #ef0a1a;
 }
