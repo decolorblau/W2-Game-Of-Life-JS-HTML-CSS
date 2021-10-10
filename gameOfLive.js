@@ -2,17 +2,15 @@
 
 //listeners
 const gameBoard = document.querySelector(".game-board");
-const start = document.querySelector("#start");
+const start = document.querySelector(".button");
 
 let cellChange;
-
-//cellChange.onclick = revive;
 
 function revive() {
   cellChange.classList.add("live");
 }
 let board = [];
-cells = 15;
+cells = 12;
 
 const createBoard = (spaces) => {
   for (let i = 0; i < spaces; i++) {
@@ -22,6 +20,7 @@ const createBoard = (spaces) => {
     row.classList.add("row", `${i}`);
 
     for (let j = 0; j < spaces; j++) {
+      board[i].push(0);
       const col = document.createElement("div");
       row.appendChild(col);
       col.classList.add("col", "die");
@@ -34,7 +33,9 @@ const createBoard = (spaces) => {
 createBoard(cells);
 
 function changeColor() {
+  console.log(this.id);
   const position = this.id.split("-");
+  console.log(position);
   const positionI = position[0];
   const postitionJ = position[1];
   if (this.classList.contains("die")) {
@@ -66,17 +67,27 @@ let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
 
-const changeBoard = (currentBoard) => {
-  for (let i = 0; i < currentBoard.length; i++) {
-    for (let j = 0; j < currentBoard[i].length; j++) {
-      cellChange = document.querySelector(`#${i}-${j}`);
-      if (currentBoard[i][j] === 1) {
-        cellChange.classList.add("live");
-      }
-    }
-  }
-};
-changeBoard(board);
+//const changeBoard = (currentBoard) => {
+//  for (let i = 0; i < currentBoard.length; i++) {
+//    for (let j = 0; j < currentBoard[i].length; j++) {
+//      cellChange = document.getElementById(`${i}-${j}`);
+//      if (currentBoard[i][j] === 1) {
+//        cellChange.classList.add("live");
+//      }
+//    }
+//  }
+//};
+//changeBoard(board);
+
+// Boton start
+start.addEventListener("click", () => startGame());
+
+function startGame() {
+  const timer = setInterval(() => {
+    boardPosition(board);
+    console.log(board);
+  }, 1500);
+}
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
@@ -125,7 +136,7 @@ function boardPosition(currentBoard) {
         liveNeighborsCenter(currentBoard, i, j);
         // newBoard[i].push(9);
       }
-      cellsState(liveNeighbors, cellState);
+      cellsState(liveNeighbors, cellState, i, j);
       newBoard[i].push(newCellState);
     }
   }
@@ -308,18 +319,18 @@ function liveNeighborsCenter(currentCell, i, j) {
 }
 
 //4-Analizar segun los vecinos vivos que tienen que les passa.
-function cellsState(neighbors, state) {
+function cellsState(neighbors, state, i, j) {
   if (state === 1) {
     if (neighbors >= 2 && neighbors < 4) {
       newCellState = 1;
-      cellChange = document.querySelector(`#${i}-${j}`);
-      cellChange.classList.add("live");
     } else if (neighbors < 2 || neighbors >= 4) {
       newCellState = 0;
+      document.getElementById(`${i}-${j}`).className = "col die";
     }
   } else {
     if (neighbors === 3) {
       newCellState = 1;
+      document.getElementById(`${i}-${j}`).className = "col live";
     } else {
       newCellState = 0;
     }
@@ -327,23 +338,17 @@ function cellsState(neighbors, state) {
   return newCellState;
 }
 
-//timer;
-/* setInterval(() => {
-  console.log(boardPosition(board));
-  //return newBoardLoop
-}, 1000); */
-
-module.exports = {
-  cellsState,
-  boardPosition,
-  liveNeighborsBottom,
-  liveNeighborsCenter,
-  liveNeighborsLeft,
-  liveNeighborsLeftBottomCorner,
-  liveNeighborsLeftTopCorner,
-  liveNeighborsRight,
-  liveNeighborsRightBottomCorner,
-  liveNeighborsRightTopCorner,
-  liveNeighborsTop,
-  createBoard,
-};
+//module.exports = {
+//  cellsState,
+//  boardPosition,
+//  liveNeighborsBottom,
+//  liveNeighborsCenter,
+//  liveNeighborsLeft,
+//  liveNeighborsLeftBottomCorner,
+//  liveNeighborsLeftTopCorner,
+//  liveNeighborsRight,
+//  liveNeighborsRightBottomCorner,
+//  liveNeighborsRightTopCorner,
+//  liveNeighborsTop,
+//  createBoard,
+//};
