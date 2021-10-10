@@ -2,15 +2,17 @@
 
 //listeners
 const gameBoard = document.querySelector(".game-board");
-const cellChange = document.querySelectorAll(".col");
+const start = document.querySelector("#start");
 
-cellChange.onclick = revive;
+let cellChange;
+
+//cellChange.onclick = revive;
 
 function revive() {
   cellChange.classList.add("live");
 }
 let board = [];
-cells = 12;
+cells = 15;
 
 const createBoard = (spaces) => {
   for (let i = 0; i < spaces; i++) {
@@ -22,13 +24,29 @@ const createBoard = (spaces) => {
     for (let j = 0; j < spaces; j++) {
       const col = document.createElement("div");
       row.appendChild(col);
-      col.classList.add("col", `${i}-${j}`);
-      board[i].push(0);
+      col.classList.add("col", "die");
+      col.id = `${i}-${j}`;
+      col.onclick = changeColor;
     }
   }
   return board;
 };
 createBoard(cells);
+
+function changeColor() {
+  const position = this.id.split("-");
+  const positionI = position[0];
+  const postitionJ = position[1];
+  if (this.classList.contains("die")) {
+    this.classList.remove("die");
+    this.classList.add("live");
+    board[positionI][postitionJ] = 1;
+  } else {
+    this.classList.remove("live");
+    this.classList.add("die");
+    board[positionI][postitionJ] = 0;
+  }
+}
 
 //1r crear tablero medidas con todo 0.
 //let board = [];
@@ -44,18 +62,21 @@ createBoard(cells);
 
 //Crear tablero con los 1 y los 0 introduciodos por el
 
-board = [
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 1, 1],
-  [0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-];
 let newBoard = [];
 let liveNeighbors = 0;
 let cellState = 0;
+
+const changeBoard = (currentBoard) => {
+  for (let i = 0; i < currentBoard.length; i++) {
+    for (let j = 0; j < currentBoard[i].length; j++) {
+      cellChange = document.querySelector(`#${i}-${j}`);
+      if (currentBoard[i][j] === 1) {
+        cellChange.classList.add("live");
+      }
+    }
+  }
+};
+changeBoard(board);
 
 //2-Analizar en que posicion esta cada elemento
 function boardPosition(currentBoard) {
@@ -291,6 +312,8 @@ function cellsState(neighbors, state) {
   if (state === 1) {
     if (neighbors >= 2 && neighbors < 4) {
       newCellState = 1;
+      cellChange = document.querySelector(`#${i}-${j}`);
+      cellChange.classList.add("live");
     } else if (neighbors < 2 || neighbors >= 4) {
       newCellState = 0;
     }
